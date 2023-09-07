@@ -5,7 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.OneToOne
+import jakarta.persistence.ManyToOne
 import org.springframework.data.relational.core.mapping.Table
 import java.util.UUID
 
@@ -17,7 +17,7 @@ data class PlayerEntity(
     val id: UUID? = null,
     val playerName: String,
     val email: String,
-    @OneToOne(cascade = [CascadeType.ALL])
+    @ManyToOne(cascade = [CascadeType.MERGE])
     val settings: SettingsEntity
 ) {
     constructor() : this(null, "", "", SettingsEntity())
