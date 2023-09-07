@@ -1,4 +1,4 @@
-package com.gamelot.lifecounter.repository.entities
+package com.gamelot.lifecounter.test.entities
 
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity

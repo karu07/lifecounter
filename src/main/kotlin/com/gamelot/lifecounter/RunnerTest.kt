@@ -1,13 +1,17 @@
 package com.gamelot.lifecounter
 
-import com.gamelot.lifecounter.repository.entities.PlayerEntity
-import com.gamelot.lifecounter.repository.entities.SettingsEntity
-import com.gamelot.lifecounter.repository.repo.PlayerRepository
-import com.gamelot.lifecounter.repository.repo.SettingsRepository
+import com.gamelot.lifecounter.test.entities.Persona
+import com.gamelot.lifecounter.test.entities.PlayerEntity
+import com.gamelot.lifecounter.test.entities.SettingsEntity
+import com.gamelot.lifecounter.test.entities.Sex
+import com.gamelot.lifecounter.test.repo.PlayerRepository
+import com.gamelot.lifecounter.test.repo.SettingsRepository
 import mu.KotlinLogging
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationListener
 import org.springframework.stereotype.Component
+import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.Random
 
 @Component
@@ -66,6 +70,32 @@ class RunnerTest(
             logger.info { result2?.email }
         }
 
+        val mario = Persona(
+            firstName = "Mario",
+            lastName = "Mendoza",
+            nationality = "Colombiano",
+            sex = Sex.APACHE_HELICOPTER,
+            birthDate = LocalDate.of(1985, 10, 15),
+            availableMoney = BigDecimal.valueOf(150000L),
+            ssn = "12345678",
+            email = "marioMendoza@gmail.com",
+            height = 1.545
+        )
+
+        val zapata = Persona(
+            firstName = "Alejandro",
+            lastName = "Zapata",
+            nationality = "Colombiano",
+            sex = Sex.MALE,
+            birthDate = LocalDate.of(1985, 4, 7),
+            availableMoney = BigDecimal.valueOf(16546416L),
+            ssn = "32456789",
+            email = "alejandrozapata@gmail.com",
+            height = 1.451
+        )
+
+        logger.info { "nuestro primer usuario se llama ${mario.firstName} y su sexo es ${mario.sex}" }
+        logger.info { "nuestro segundo usuario se llama ${zapata.firstName} y su sexo es ${zapata.sex}, ${zapata.availableMoney}, ${zapata.birthDate} ${zapata.height}" }
         logger.info { "etsito" }
     }
 }

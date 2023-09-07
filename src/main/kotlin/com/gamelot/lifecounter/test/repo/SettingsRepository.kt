@@ -1,6 +1,6 @@
-package com.gamelot.lifecounter.repository.repo
+package com.gamelot.lifecounter.test.repo
 
-import com.gamelot.lifecounter.repository.entities.SettingsEntity
+import com.gamelot.lifecounter.test.entities.SettingsEntity
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
