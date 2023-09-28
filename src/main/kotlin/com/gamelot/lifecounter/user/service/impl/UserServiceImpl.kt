@@ -4,8 +4,11 @@ import com.gamelot.lifecounter.user.repository.entities.UserDAO
 import com.gamelot.lifecounter.user.repository.jpa.UserRepository
 import com.gamelot.lifecounter.user.service.UserService
 import com.gamelot.lifecounter.user.service.model.User
+import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.util.regex.Pattern
 
+@Service
 class UserServiceImpl (
     val userRepository: UserRepository
 ): UserService {
@@ -27,8 +30,8 @@ class UserServiceImpl (
     }
 
     private fun validateMail(email: String): Boolean {
-        val emailRegex = Regex.fromLiteral("^[/w-/.]+@([/w-]+/.)+[/w-]{2,4}$")
-        if (!emailRegex.containsMatchIn(email)){
+        val emailRegex = Pattern.compile("^(.+)@(\\S+)$")
+        if (!emailRegex.matcher(email).matches()){
             return false
         }
         if(userRepository.findAllByEmail(email).isEmpty()){
@@ -38,11 +41,11 @@ class UserServiceImpl (
     }
 
     override fun getUser(id: Long): User {
-        TODO("Not yet implemented")
+         TODO("Not yet implemented")
     }
 
     override fun confirmMail(mail: String, auth: String): Boolean {
-        TODO("Not yet implemented")
+         TODO("Not yet implemented")
     }
 
 }

@@ -17,7 +17,7 @@ class UserController (val userService: UserService) {
 
         val result = userService.createUser(userCreationDTO.toUser())
         if (result) {
-            return ResponseEntity.status(201).body("la persona se ha guardado exitosamente")
+            return ResponseEntity.status(201).body("el usuario se ha guardado exitosamente")
         } else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("algo malo paso lo sentimos")
     }
 }

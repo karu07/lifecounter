@@ -44,9 +44,9 @@ class PersonController(
     fun savePerson(@RequestBody person: Persona): ResponseEntity<Any> {
 
         val result = personService.savePersona(person)
-        if (result) {
-            return ResponseEntity.status(201).body("la persona se ha guardado exitosamente")
-        } else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("algo malo paso lo sentimos")
+        return if (result) {
+            ResponseEntity.status(201).body("la persona se ha guardado exitosamente")
+        } else ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("algo malo paso lo sentimos")
     }
 
    // ejercicio de arbol binario
