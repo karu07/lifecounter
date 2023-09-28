@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody
 
 @Controller
 class UserController (val userService: UserService) {
-    @PostMapping("/info")
+    @PostMapping("/create-user")
     fun createNewUser(@RequestBody userCreationDTO: UserCreationDTO): ResponseEntity<Any> {
 
         val result = userService.createUser(userCreationDTO.toUser())
