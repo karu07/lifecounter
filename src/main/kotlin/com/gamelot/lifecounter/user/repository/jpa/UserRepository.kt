@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface UserRepository: JpaRepository<UserDAO,Long> {
     fun findAllByEmail(email: String): List<UserDAO>
+
+    fun findByEmail(email:String) : UserDAO?
 }

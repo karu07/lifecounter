@@ -3,10 +3,7 @@ package com.gamelot.lifecounter.user.repository.entities
 import com.gamelot.lifecounter.user.service.model.GameSettings
 import com.gamelot.lifecounter.user.service.model.Role
 import com.gamelot.lifecounter.user.service.model.User
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
 import java.util.*
@@ -21,16 +18,25 @@ data class UserDAO(
     val name: String,
     val username: String,
     val email: String,
-    val settings : String,
-    val role : String,
-    val birthDate : LocalDate,
-    val password : String,
-    val isMailVerified : Boolean,
+    @OneToOne(cascade = [CascadeType.MERGE])
+    val settings: GameSettings = GameSettings(),
+    val role: String,
+    val birthDate: LocalDate,
+    val auth: String
 ) {
-    constructor() : this(null, "", "", "", "", "", LocalDate.now(), "", false) {
+    constructor() : this(null, "", "", "", GameSettings(), "", LocalDate.now(), "")
 
+    fun toUser(): User {
+        return User(
+            this.name,
+            this.username,
+            this.email,
+            this.settings,
+            Role.valueOf(this.role),
+            this.birthDate,
+            this.auth
+        )
     }
-
     companion object {
         fun fromUser(user: User): UserDAO {
             return UserDAO(
@@ -38,11 +44,10 @@ data class UserDAO(
                 user.name,
                 user.username,
                 user.email,
-                user.settings.settingsName,
+                user.settings,
                 user.role.name,
                 user.birthDate,
-                UUID.randomUUID().toString(),
-                false
+                user.auth
             )
         }
     }
