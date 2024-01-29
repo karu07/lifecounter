@@ -14,7 +14,7 @@ data class GameSettingsDAO(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID? = null,
-    val password: String,
+    val password: String?,
     val isVerified: Boolean,
 ) {
     constructor() : this(null, "", false) {
