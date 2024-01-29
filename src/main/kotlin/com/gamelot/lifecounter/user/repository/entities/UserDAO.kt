@@ -24,7 +24,7 @@ data class UserDAO(
     val birthDate: LocalDate,
     val auth: String
 ) {
-    constructor() : this(null, "", "", "", GameSettings(), "", LocalDate.now(), "")
+    //constructor() : this(null, "", "", "", GameSettings(), "", LocalDate.now(), "")
 
     fun toUser(): User {
         return User(

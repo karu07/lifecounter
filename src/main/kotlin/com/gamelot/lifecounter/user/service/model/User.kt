@@ -1,6 +1,5 @@
 package com.gamelot.lifecounter.user.service.model
 
-import com.gamelot.lifecounter.user.repository.entities.UserDAO
 import java.time.LocalDate
 
 data class User(
