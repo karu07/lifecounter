@@ -25,10 +25,10 @@ class PersonService(
 
     fun validatePersonInformation(id: Long, password: String): PrivateInformationDTO? {
         val person = personRepository.findById(id).get()
-        if (person.password == password) {
-            return person.toPrivateInformation()
+        return if (person.password == password) {
+            person.toPrivateInformation()
         } else {
-            return null
+            null
         }
     }
 
