@@ -19,7 +19,7 @@ data class UserDAO(
     val username: String,
     val email: String,
     @OneToOne(cascade = [CascadeType.MERGE])
-    val settings: GameSettings? = GameSettings(),
+    val settings: GameSettings = GameSettings(),
     val role: String,
     val birthDate: LocalDate,
     val auth: String
